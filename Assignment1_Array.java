@@ -44,6 +44,7 @@ class Assignment1_Array {
 			minF=score2[i];
 		}
 	  }
+	  System.out.print("==============================================\n");
 	  System.out.print("Name\tMidterm\tFinal\tScore\n");
 	  for(int i=0;i<kon;i++){
          System.out.println(name[i]+"\t"+score[i]+"\t"+score2[i]+"\t"+totalScore[i]);
