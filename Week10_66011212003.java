@@ -3,97 +3,93 @@ class Week10_66011212003
 {
 	public static void main(String[] args) 
 	{
-		Week10_66011212003 method=new Week10_66011212003();
-		int x1=method.getX1();
-		int y1=method.getY1();
-		int x2=method.getX2();
-		int y2=method.getY2();
-		int x3=method.getX3();
-		int y3=method.getY3();
-		double sideLenghtA=method.getSideLenghtA(x1,y1,x2,y2);
-		double sideLenghtB=method.getSideLenghtB(x1,y1,x3,y3);
-		double sideLenghtC=method.getSideLenghtC(x2,x3,y2,y3);
-		double s=method.getS(sideLenghtA,sideLenghtB,sideLenghtC);
-		double area=method.getArea(s,sideLenghtA,sideLenghtB,sideLenghtC);
-		method.setShowMonitor(sideLenghtA,sideLenghtB,sideLenghtC,s,area);
+		Scanner kb=new Scanner(System.in);
 		
+		Week10_66011212003 obj=new Week10_66011212003();
+		int n,i,j;
+		System.out.print("N: ");
+		n=kb.nextInt();
+		System.out.print("(O/X/E):");
+		char cha=kb.next().charAt(0);
+		char str[][]=new char[n][n];
+		obj.fill_toCharArray(str);
+		
+		for(;;){
+			if(cha=='X'||cha=='x'){
+				System.out.print("Index(X):");
+				i=kb.nextInt();
+				System.out.print("Colum(X):");
+				j=kb.nextInt();
+				if(i<n&&j<n){
+					obj.setXtoArray2D(str,i,j);
+				}
+				else{
+					System.out.println("Please input again");
+					System.out.print("Index(X):");
+					i=kb.nextInt();
+					System.out.print("Colum(X):");
+					j=kb.nextInt();
+					obj.setXtoArray2D(str,i,j);
+					
+				}
+			}
+			else if(cha=='O'||cha=='o'){
+				System.out.print("Intdex(O):");
+				i=kb.nextInt();
+				System.out.print("Colum(O):");
+				j=kb.nextInt();
+				if(i<n&&j<n){
+					obj.setOtoArray2D(str,i,j);
+				}
+				else{
+					System.out.println("Please input again");
+					System.out.print("Index(O):");
+					i=kb.nextInt();
+					System.out.print("Colum(O):");
+					j=kb.nextInt();
+					obj.setXtoArray2D(str,i,j);
+				}
+			}
+			else if(cha=='E'||cha=='e'){
+				break;
+			}
+			else{
+				break;
+			}
+			obj.printCharArray2D(str);
+			System.out.print("-------------------\n");
+			System.out.print("(O/X/E):");
+			cha=kb.next().charAt(0);
+		}
 	}
-	int getX1()
-	{
-		int x1;
-		Scanner kb=new Scanner(System.in);
-		System.out.print("x1: ");
-		x1=kb.nextInt();
-		return x1;
+	void printCharArray2D(char str[][]){
+		for(int i=0;i<str.length;i++){
+			for(int j=0;j<str[i].length;j++){
+				System.out.print(str[i][j]+"\t");
+			}System.out.println();
+		}
 	}
-	int getY1()
-	{
-		int y1;
-		Scanner kb=new Scanner(System.in);
-		System.out.print("y1: ");
-		y1=kb.nextInt();
-		return y1;
+	void fill_toCharArray(char str[][]){
+		for(int i=0;i<str.length;i++){
+			for(int j=0;j<str.length;j++){
+				str[i][j]='_';
+			}
+		}
 	}
-	int getX2()
-	{
-		int x2;
-		Scanner kb=new Scanner(System.in);
-		System.out.print("x2: ");
-		x2=kb.nextInt();
-		return x2;
+	void setXtoArray2D(char x[][],int i,int j){
+		if(x[i][j]!='X'&&x[i][j]!='O'){
+			x[i][j]='X';
+		}
+		else{
+			System.out.println("Please enter X again.");
+		}
 	}
-	int getY2()
-	{
-		int y2;
-		Scanner kb=new Scanner(System.in);
-		System.out.print("y2: ");
-		y2=kb.nextInt();
-		return y2;
-	}
-	int getX3()
-	{
-		int x3;
-		Scanner kb=new Scanner(System.in);
-		System.out.print("x3: ");
-		x3=kb.nextInt();
-		return x3;
-	}
-	int getY3()
-	{
-		int y3;
-		Scanner kb=new Scanner(System.in);
-		System.out.print("y3: ");
-		y3=kb.nextInt();
-		return y3;
-	}
-	double getSideLenghtA(int x1,int y1,int x2,int y2)
-	{
-		double sideA=Math.sqrt((Math.pow((x1-x2),2))+(Math.pow((y1-y2),2)));
-		return sideA;
-	}
-	double getSideLenghtB(int x1,int y1,int x3,int y3)
-	{
-		double sideB=Math.sqrt((Math.pow((x1-x3),2))+(Math.pow((y1-y3),2)));
-		return sideB;
-	}
-	double getSideLenghtC(int x2,int x3,int y2,int y3)
-	{
-		double sideC=Math.sqrt((Math.pow((x2-x3),2))+(Math.pow((y2-y3),2)));
-		return sideC;
-	}
-	double getS(double sideA,double sideB,double sideC)
-	{
-		double s=(sideA+sideB+sideC)/2;
-		return s;
-	}
-	double getArea(double s,double sideA,double sideB,double sideC)
-	{
-		double area=Math.sqrt((s*(s-sideA)*(s-sideB)*(s-sideC)));
-		return area;
-	}
-	void setShowMonitor(double sideLenghtA,double sideLenghtB,double sideLenghtC,double s,double area)
-	{
-		System.out.print("=====================================================\n");
-        System.out.println("A: "+(float)sideLenghtA+"\nB: "+(float)sideLenghtB+"\nC: "+(float)sideLenghtC+"\nS: "+(float)s+"\nArea: "+(float)area);
+	void setOtoArray2D(char o[][],int i,int j){
+		if(o[i][j]!='X'&&o[i][j]!='O'){
+			o[i][j]='O';
+		}
+		else{
+			System.out.println("Please enter O again.");
+		}
 	}
 }
